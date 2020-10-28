@@ -34,6 +34,14 @@ function StackedAreaChart(container) {
     
     svg.append('g')
         .attr('class', 'axis y-axis');
+    
+    // added
+    svg.append("clipPath")
+    .attr("id", "clip")
+    .append("rect")
+    .attr("width", width)// the size of clip-path is the same as
+    .attr("height", height); // the chart area
+    // stop
 
     // initialize category label
     const tooltip = svg
@@ -80,6 +88,7 @@ function StackedAreaChart(container) {
             .merge(areas)
             .attr('fill', d => colorScale(d.key))
             .attr('d', area)
+            .attr("clip-path", "url(#clip)") // added
             .on('mouseover', (event, d, i) => tooltip.text(d.key))
             .on('mouseout', (event, d, i) => tooltip.text(''))
             .on('click', (event, d) => {
