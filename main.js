@@ -1,5 +1,5 @@
-import AreaChart from '.AreaChart.js';
-import StackedAreaChart from '.StackedAreaChart.js'; 
+import AreaChart from './AreaChart.js';
+import StackedAreaChart from './StackedAreaChart.js'; 
 
 d3.csv('unemployment.csv', d3.autoType).then(data => {
     console.log('unemployment', data);
