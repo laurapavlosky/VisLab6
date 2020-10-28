@@ -79,11 +79,10 @@ function AreaChart(container) {
         yScale.domain([0, d3.max(data, d => d.total)]);
 
         // create area generator
-        let area = d3.area() // added fill
+        let area = d3.area()
             .x(d => xScale(d.date))
             .y1(d => yScale(d.total))
-            .y0(yScale.range()[0])
-            .attr('fill', #8dd3c7); 
+            .y0(yScale.range()[0]); 
 
         // select path created during initialization, set data, call area function
         d3.select('.area')
