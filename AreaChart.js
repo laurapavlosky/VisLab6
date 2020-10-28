@@ -43,7 +43,7 @@ function AreaChart(container) {
      // create brush
      const brush = d3
      .brushX()
-     .extent([0,0], [width,height])
+     .extent([[0,0], [width,height]])
      .on('brush', brushed)
      .on('end', brushended);
  
@@ -67,10 +67,10 @@ function AreaChart(container) {
                 listeners["brushed"]([xScale.invert(0),xScale.invert(width)]);
             }    
         }
+        
     }
 
-
-   
+    
     // CHART UPDATE FUNCTION --------------------------------------------------
     function update(data) {
         // update domains
