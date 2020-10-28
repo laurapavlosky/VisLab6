@@ -80,6 +80,7 @@ function AreaChart(container) {
 
         // create area generator
         let area = d3.area()
+            .attr('fill',#8dd3c7) // added fill
             .x(d => xScale(d.date))
             .y1(d => yScale(d.total))
             .y0(yScale.range()[0]); 
