@@ -42,7 +42,10 @@ function StackedAreaChart(container) {
     let selected = null, xDomain, data;
     
     // CHART UPDATE FUNCTION --------------------------------------------------
-    function update(data) {
+    function update(data1) {
+        data = data1;
+        console.log('update', data);
+        
         const keys = selected ? [selected] : data.columns.slice(1);
 
         var stack = d3.stack()
@@ -54,7 +57,9 @@ function StackedAreaChart(container) {
         //console.log('series', series);
 
         // update domains
-        xScale.domain([d3.min(data, d => d.date), d3.max(data,d => d.date)]);
+        xDomain ? xScale.domain(xDomain) : xScale.domain(d3.extent(data.map((d) => d.date)));
+        //xScale.domain(d3.extent(data.map((d) => d.date)));
+        //xScale.domain([d3.min(data, d => d.date), d3.max(data,d => d.date)]);
 
         yScale.domain([0, d3.max(series, d => d3.max(d, d => d[1]))]);
 
@@ -100,7 +105,7 @@ function StackedAreaChart(container) {
         
     }
     function filterByDate(range) {
-        xScale.domain = range;
+        xDomain = range;
         update(data);
       }
 
